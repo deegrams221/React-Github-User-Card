@@ -17,7 +17,8 @@
   border: 3px solid #c1c1c1;
   background: #f8e8c8;
   padding: 10px;
-  max-width: 20vw;
+  max-width: 16rem;
+  margin: 0 auto;
 }
 
 .User-Card>img {

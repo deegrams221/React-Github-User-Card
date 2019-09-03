@@ -8,11 +8,13 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      userData: {}
+      userData: {},
+      followers: []
     };
     console.log("Constructor is running");
   }
 
+  // fetching my user data
   componentDidMount() {
     axios
       .get("https://api.github.com/users/deegrams221")
@@ -21,18 +23,26 @@ class App extends React.Component {
         console.log("userData", this.state.userData);
       })
       .catch(err => console.log(err));
-  }
+  
 
+  // fetching followers
+    axios
+      .get("https://api.github.com/users/deegrams221/followers")
+      .then(res => {
+        this.setState({followers: res.data})
+        console.log("follower data: ", this.state.followers);
+      })
+  }
 
   render() {
     console.log(this.state);
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Github User Cards</h1>
+          <h1>Github User Card</h1>
         </header>
         <div>
-          <UserCard data={this.state.userData} />
+          <UserCard data={this.state.userData} followers={this.state.followers} />
         </div>
 
       </div>
